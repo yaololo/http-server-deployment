@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Getting Started</title>
+    <script>
+      const modernBrowser = "fetch" in window && "assign" in Object;
+
+      if (!modernBrowser) {
+        const scriptElement = document.createElement("script");
+
+        scriptElement.async = false;
+        scriptElement.src = "/polyfills.bundle.js";
+        document.head.appendChild(scriptElement);
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- <script src="./src/index.js"></script> -->
+    <script src="./dist/index.bundle.js"></script>
+  </body>
+</html>
