@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin"); //installed via npm
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const devMode = process.env.NODE_ENV !== 'production'
+
 module.exports = {
   entry: {
     polyfills: "./src/polyfills.js",
@@ -11,9 +13,11 @@ module.exports = {
   devtool: "inline-source-map", // debugging
   mode: "development",
   output: {
-    filename: "[name].bundle.js",
-    chunkFilename: '[name].bundle.js', // For non-entry files
-    publicPath: 'dist/',
+    filename: devMode ? '[name].js' : '[name].[hash].js',
+    chunkFilename: devMode ? '[name].js' : '[name].[chunkhash].js', // For non-entry files
+    // filename: "[name].bundle.js",
+    // chunkFilename: "[name].bundle.js",
+    publicPath: "dist/",
     path: path.resolve(__dirname, "dist")
   },
   devServer: {
@@ -55,6 +59,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: "index.html" }),
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({
+      filename: devMode ? "[name].css" : "[name].[hash].css",
+      chunkFilename: devMode ? "[id].css" : "[id].[hash].css"
+    })
   ]
 };
