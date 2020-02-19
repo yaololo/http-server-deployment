@@ -1,6 +1,5 @@
 import "./style.css";
 import Icon from "./icon.jpg";
-import Data from "./data.xml";
 import print from "./print";
 
 function component() {
@@ -15,8 +14,6 @@ function component() {
   myIcon.src = Icon;
   element.appendChild(myIcon);
 
-  console.log("xml data: ", Data.note.body);
-  console.log("xml data: ", Data);
   return element;
 }
 
