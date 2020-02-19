@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = env => {
   const devMode = env.NODE_ENV !== "production";
   const loaderPath = path.resolve(__dirname, "src");
+  const port = process.env.PORT;
 
   return {
     entry: {
@@ -21,7 +22,8 @@ module.exports = env => {
       path: path.resolve(__dirname, "dist")
     },
     devServer: {
-      contentBase: "./dist"
+      contentBase: "./dist",
+      port: port ? port : 3000
     },
     module: {
       rules: [
