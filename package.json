@@ -7,9 +7,7 @@
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.4.2",
-    "file-loader": "^5.0.2",
-    "mini-css-extract-plugin": "^0.9.0",
-    "webpack-dev-server": "^3.10.3"
+    "file-loader": "^5.0.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,6 +16,8 @@
     "build": "webpack -p --env.NODE_ENV=production --progress"
   },
   "dependencies": {
+    "webpack-dev-server": "^3.10.3",
+    "mini-css-extract-plugin": "^0.9.0",
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
     "babel-loader": "^8.0.6",
