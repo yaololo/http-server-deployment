@@ -1,6 +1,8 @@
 {
   "name": "http-server",
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
