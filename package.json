@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "cd client&&yarn build",
+    "install": "cd client&&yarn install",
     "prestart": "yarn build",
     "start": "cd server&& node server.js"
   }
