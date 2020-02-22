@@ -10,7 +10,7 @@ module.exports = env => {
 
   return {
     entry: {
-      polyfills: "./src/polyfills.js",
+      // polyfills: "./src/polyfills.js",
       index: "./src/index.js"
     },
     devtool: "inline-source-map", // debugging
@@ -23,7 +23,9 @@ module.exports = env => {
     },
     devServer: {
       contentBase: "./dist",
-      port: port ? port : 3000
+      port: port ? port : 3000,
+      historyApiFallback: true,
+      publicPath: "/"
     },
     module: {
       rules: [
@@ -32,12 +34,29 @@ module.exports = env => {
           include: loaderPath,
           use: [
             {
-              loader: MiniCssExtractPlugin.loader, // Avoid duplicate css bundle
-              options: {
-                publicPath: "/public/path/to/"
-              }
+              loader: MiniCssExtractPlugin.loader // Avoid duplicate css bundle
+              // options: {
+              //   publicPath: "/public/path/to/"
+              // }
             },
             "css-loader"
+          ]
+        },
+        {
+          test: /\.less$/,
+          use: [
+            {
+              loader: "style-loader" // creates style nodes from JS strings
+            },
+            {
+              loader: "css-loader" // translates CSS into CommonJ
+            },
+            {
+              loader: "less-loader", // compiles Less to CSS
+              options: {
+                javascriptEnabled: true
+              }
+            }
           ]
         },
         {
@@ -47,6 +66,7 @@ module.exports = env => {
         },
         {
           test: /\.js$/,
+          exclude: /node_modules/,
           include: path.resolve(__dirname, "src"),
           loader: "babel-loader"
         }
