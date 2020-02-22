@@ -6,6 +6,8 @@
   "author": "yongming <zhuangyongming1900@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "cd client&&yarn build"
+    "build": "cd client&&yarn build",
+    "prestart": "yarn build",
+    "start": "cd server&& node server.js"
   }
 }
